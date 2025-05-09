@@ -1,6 +1,10 @@
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { execSync } from 'node:child_process';
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   // Extract the RGBDS version we're using and set it as an env variable
@@ -14,6 +18,12 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
       target: ['chrome109', 'safari15.6', 'firefox102'],
       outDir: 'www',
       chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          tracker: resolve(__dirname, 'tracker/index.html'),
+        },
+      }
     },
     resolve: {
       alias: {

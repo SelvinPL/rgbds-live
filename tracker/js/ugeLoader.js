@@ -1,6 +1,9 @@
 'use strict';
 
-function loadUGESong(data) {
+import Song from './song.js';
+import { DutyInstrument, WaveInstrument, NoiseInstrument, PatternCell } from './song.js';
+
+export function loadUGESong(data) {
   var song = new Song();
 
   //TODO: Sanity checks on data.

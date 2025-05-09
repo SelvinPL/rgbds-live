@@ -1,6 +1,6 @@
 'use strict';
 
-function saveUge(song) {
+export function saveUge(song) {
   var buffer = new ArrayBuffer(1024 * 1024);
   var idx = 0;
   var view = new DataView(buffer);
@@ -76,4 +76,14 @@ function saveUge(song) {
   for (var n = 0; n < 16; n++) addUint32(0); //Add empty routines
 
   downloadBlob(new Blob([buffer.slice(0, idx)]), 'song.uge');
+}
+
+function downloadBlob(blob, download)
+{
+  const el = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  el.href = url;
+  el.download = download;
+  el.click();
+  URL.revokeObjectURL(url);
 }

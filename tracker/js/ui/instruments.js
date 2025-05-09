@@ -1,6 +1,9 @@
 'use strict';
 
-class InstrumentUI {
+import{ DutyInstrument, WaveInstrument, NoiseInstrument }
+from '../song.js';
+
+export default class InstrumentUI {
   constructor() {
     this.updateInstrumentList();
 

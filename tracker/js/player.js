@@ -1,6 +1,16 @@
 'use strict';
 
-class Player {
+import * as compiler from './../../js/compiler.js';
+import * as storage from './../../js/storage.js';
+import * as emulator from './../../js/emulator.js';
+import SONG_TEMPLATE_ASM from '../asm/song_template.asm?raw';
+import HARDWARE_INC from '../asm/HARDWARE.INC?raw';
+import PLAYER_ASM from '../asm/player.z80?raw';
+import HUGEDRIVER_ASM from '../asm/hUGEDriver.z80?raw';
+import HUGE_INC from '../asm/hUGE.inc?raw';
+import HUGE_NOTE_TABLE_INC from '../asm/hUGE_note_table.inc?raw';
+
+export default class Player {
   interval_handle = null;
   rom_file = null;
   muted_channels_mask = 0;
@@ -19,15 +29,12 @@ class Player {
       req.send();
       storage.update(name, req.response.replace(/include\//g, ''));
     }
-    getFile('https://raw.githubusercontent.com/untoxa/hUGEBuild/master/player-rgbds/rgbds_player.asm', 'main.asm');
-    getFile('https://raw.githubusercontent.com/untoxa/hUGEBuild/master/hUGEDriver.asm', 'hUGEDriver.asm');
-    getFile('https://raw.githubusercontent.com/untoxa/hUGEBuild/master/include/hUGE.inc', 'hUGE.inc');
-    getFile(
-      'https://raw.githubusercontent.com/untoxa/hUGEBuild/master/include/hUGE_note_table.inc',
-      'hUGE_note_table.inc',
-    );
-    getFile('https://raw.githubusercontent.com/untoxa/hUGEBuild/master/include/HARDWARE.INC', 'HARDWARE.INC');
-    storage.update('song.asm', 'SECTION "song", ROM0[$1000]\n_song_descriptor:: ds $8000 - @');
+    storage.update('main.asm', PLAYER_ASM);
+    storage.update('hUGEDriver.asm', HUGEDRIVER_ASM);
+    storage.update('hardware.inc', HARDWARE_INC);
+    storage.update('hUGE.inc', HUGE_INC);
+    storage.update('hUGE_note_table.inc', HUGE_NOTE_TABLE_INC);
+    storage.update('song_template.asm', SONG_TEMPLATE_ASM);
 
     compiler.compile((rom_file, start_address, addr_to_line) => {
       this.rom_file = rom_file;
@@ -186,6 +193,6 @@ class Player {
     }
     console.log(addr - compiler.getRomSymbols().indexOf('_song_descriptor'));
 
-    emulator.updateRom(this.rom_file);
+    emulator.init(null, this.rom_file);
   }
 }

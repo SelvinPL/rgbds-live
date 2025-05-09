@@ -1,5 +1,9 @@
 'use strict';
 
+import JSZip from 'jszip';
+import{ DutyInstrument, WaveInstrument, NoiseInstrument }
+from './song.js';
+
 //TODO: Merge this code with assemblyExport, currently lots of duplication
 
 function asmHex2(n) {
@@ -10,7 +14,7 @@ function exportSongAsAssembly(song) {
   return new AssemblyExporter().getCompactAssembly();
 }
 
-class AssemblyExporter {
+export default class AssemblyExporter {
   constructor() {
     this.patterns = [];
     this.pattern_map = {};

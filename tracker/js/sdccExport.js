@@ -1,12 +1,16 @@
 'use strict';
 
+import{ DutyInstrument, WaveInstrument, NoiseInstrument }
+from './song.js';
+
+
 //TODO: Merge this code with assemblyExport, currently lots of duplication
 
 function cHex2(n) {
   return '0x' + ('00' + n.toString(16).toUpperCase()).slice(-2);
 }
 
-class SdccExporter {
+export default class SdccExporter {
   constructor() {
     this.patterns = [];
     this.pattern_map = {};

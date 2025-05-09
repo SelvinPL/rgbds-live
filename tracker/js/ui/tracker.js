@@ -15,7 +15,7 @@ function effectToText(effectcode, effectparam) {
   return effectcode.toString(16).toUpperCase() + ('00' + effectparam.toString(16).toUpperCase()).slice(-2);
 }
 
-class TrackerUI {
+export default class TrackerUI {
   pattern_index = 0;
   selected_row = null;
   selected_col = null;
@@ -404,6 +404,9 @@ class TrackerUI {
   }
 
   setSelection(row, col, type) {
+    //TODO: WTF??? row sometimes is 145 
+    if(row > 63)
+      return;
     if (this.selected_row !== null) {
       var cell = this.getCell(this.selected_row, this.selected_col, this.selected_type);
       for (var c of cell.parentElement.parentElement.children)

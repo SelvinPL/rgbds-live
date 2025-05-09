@@ -1,6 +1,6 @@
 'use strict';
 
-class SequenceUI {
+export default class SequenceUI {
   current_index = 0;
 
   constructor() {

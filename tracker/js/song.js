@@ -1,6 +1,6 @@
 'use strict';
 
-class Song {
+export default class Song {
   constructor() {
     this.name = '';
     this.artist = '';
@@ -188,7 +188,7 @@ class Song {
     return true;
   }
 }
-class DutyInstrument {
+export class DutyInstrument {
   constructor(name) {
     this.name = name;
     this.length = null;
@@ -206,7 +206,7 @@ class DutyInstrument {
     return track == 0 || track == 1;
   }
 }
-class WaveInstrument {
+export class WaveInstrument {
   constructor(name) {
     this.name = name;
     this.length = null;
@@ -219,7 +219,7 @@ class WaveInstrument {
     return track == 2;
   }
 }
-class NoiseInstrument {
+export class NoiseInstrument {
   constructor(name) {
     this.name = name;
     this.length = null;
@@ -236,7 +236,7 @@ class NoiseInstrument {
     return track == 3;
   }
 }
-class PatternCell {
+export class PatternCell {
   constructor() {
     this.note = null;
     this.instrument = null;
