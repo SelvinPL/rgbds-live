@@ -7,7 +7,7 @@ if [[ "$(which emsdk)" == "" ]]; then
     exit 1
 fi
 
-[ -d build ] || emcmake cmake -B build
+[ -d build ] || emcmake cmake -B build -G Ninja
 [ -d node_modules ] && [ package.json -ot node_modules ] || npm ci && touch node_modules
 
 cmake --build build
