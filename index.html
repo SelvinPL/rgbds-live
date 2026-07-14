@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google" content="notranslate" />
 
-    <script type="module" crossorigin src="./assets/index-BTXhAYds.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CbGFJnqx.css">
+    <script type="module" crossorigin src="./assets/index-DHIIvpyk.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DCWDmjmK.css">
   </head>
 
   <body>
@@ -39,7 +39,24 @@
                   Store data between sessions
                 </label>
               </li>
+              <li>
+                <label>
+                  <input type="checkbox" id="view_enable_autocomplete" />
+                  Enable autocomplete
+                </label>
+              </li>
               <li id="settingsmenu">Settings...</li>
+            </ul>
+          </li>
+          <li>
+            View
+            <ul>
+              <li>
+                  Font size:
+                  <button id="view_font_decrease" class="fontsize-btn" title="Decrease (Ctrl+-)">−</button>
+                  <span id="view_font_size_display">14</span>px
+                  <button id="view_font_increase" class="fontsize-btn" title="Increase (Ctrl+=)">+</button>
+              </li>
             </ul>
           </li>
           <li>
@@ -220,7 +237,7 @@
             <label for="newfile_mode_upload">Existing file</label>
             <div>
               <p>Load a file from your local harddisk</p>
-              <p><input type="file" id="newfile_upload" /></p>
+              <p><input type="file" id="newfile_upload" multiple /></p>
             </div>
           </div>
         </div>
